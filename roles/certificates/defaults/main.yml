@@ -20,6 +20,9 @@ ip:
   - "{{ public_ipv4 }}"
   - "{{ private_ipv4 }}"
   - "{{ ansible_ssh_host }}"
+  # This is the first address in the kube_service_addresses range, aka the
+  # k8s_service_ip. It is used internally by the dashboard and other services.
+  - "{{ kube_service_addresses|ipaddr('net')|ipaddr(1)|ipaddr('address') }}"
 # Don't change these defaults; many components depend on the expected locations.
 prefix: ""
 destination: /etc/pki/mantl
