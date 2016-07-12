@@ -1,3 +1,4 @@
+# -*- mode: yaml -*-
 # Copyright 2015 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -40,6 +41,9 @@ items:
         - name: kubernetes-dashboard
           image: gcr.io/google_containers/kubernetes-dashboard-amd64:v1.0.1
           imagePullPolicy: Always
+          env:
+            - name: KUBECONFIG
+              value: /etc/kubernetes/kubeconfig.yml
           ports:
           - containerPort: 9090
             protocol: TCP
@@ -52,6 +56,20 @@ items:
               port: 9090
             initialDelaySeconds: 30
             timeoutSeconds: 30
+          volumeMounts:
+          - mountPath: /etc/kubernetes
+            name: etc-kubernetes
+            readOnly: true
+          - mountPath: /etc/pki
+            name: etc-pki
+            readOnly: true
+        volumes:
+        - name: etc-kubernetes
+          hostPath:
+            path: /etc/kubernetes
+        - name: etc-pki
+          hostPath:
+            path: /etc/pki
 
 - kind: Service
   apiVersion: v1

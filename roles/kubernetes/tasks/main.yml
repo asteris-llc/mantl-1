@@ -38,8 +38,8 @@
 - name: generate kubelet kubeconfig
   sudo: yes
   template:
-    src: "kubeconfig.yml.j2"
-    dest: "/etc/kubernetes/kubeconfig.yml"
+    src: kubeconfig.yml.j2
+    dest: /etc/kubernetes/kubeconfig.yml
     owner: root
     group: root
     mode: 0644

@@ -26,7 +26,7 @@ spec:
     - --service-account-key-file={{ host_key }}
     - --basic-auth-file={{ kube_users_dir }}/known_users.csv
     - --runtime-config=extensions/v1beta1/daemonsets=true
-    - --v={{kube_log_level}}
+    - --v={{ kube_log_level }}
     - --storage-backend=consul
     ports:
     - containerPort: {{ kube_master_port }}
