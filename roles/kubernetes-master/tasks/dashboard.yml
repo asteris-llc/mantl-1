@@ -19,7 +19,7 @@
     name: kubernetes-dashboard
     filename: "{{ kube_manifest_dir }}/kubernetes-dashboard.yml"
     state: "{{ kubernetes_dashboard_rc_def.changed | ternary('latest','present') }}"
-    server: "http://localhost:8085/"
+    server: "http://localhost:{{ kube_insecure_port }}/"
   run_once: true
   tags:
     - addons

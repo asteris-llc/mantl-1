@@ -13,7 +13,7 @@ spec:
     - --consul-agent=http://127.0.0.1:8500
     - --domain=cluster.local
     - --healthz-port=8081
-    - --kube-master-url=http://127.0.0.1:{{ kube_insecure_port }}
+    - --kube-master-url=http://127.0.0.1:{{ kube_master_port }}
     - --kubecfg-file=/etc/kubernetes/kubeconfig.yml
     - --log-flush-frequency=5s
     livenessProbe:

@@ -11,7 +11,7 @@ metadata:
 spec:
   type: NodePort
   ports:
-  - targetPort: 8085
+  - targetPort: {{ kube_insecure_port }}
     port: 8086
     nodePort: 30001
   selector:

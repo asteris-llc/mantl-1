@@ -49,7 +49,7 @@ items:
             protocol: TCP
           args:
             # The API server must use the insecure port.
-            # - --apiserver-port={{ kube_insecure_port }}
+            - --apiserver-host=http://kubernetes.service.consul:{{ kube_insecure_port }}
           livenessProbe:
             httpGet:
               path: /
