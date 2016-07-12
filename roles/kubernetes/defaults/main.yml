@@ -4,7 +4,7 @@
 kube_log_level: 0
 
 # The port the API Server will be listening on.
-kube_master_port: 443
+kube_master_port: 6443
 kube_insecure_port: 8085
 
 # This is where all of the bearer tokens will be stored

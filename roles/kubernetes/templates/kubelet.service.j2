@@ -7,13 +7,11 @@ Requires=network.target docker.service
 [Service]
 ExecStart=/usr/bin/kubelet \
   {% if 'role=control' in group_names -%}
-  --api-servers=http://localhost:8085 \
+  --api-servers=http://localhost:{{ kube_master_port }} \
   --register-schedulable=false \
   {% else -%}
   --api-servers=https://kubernetes.service.consul:{{ kube_master_port }} \
   --kubeconfig=/etc/kubernetes/kubeconfig.yml \
-  --tls-cert-file={{ host_cert }} \
-  --tls-private-key-file={{ host_key }} \
   --v={{ kube_log_level }} \
   {% endif -%}
   --allow-privileged=true \
@@ -25,7 +23,9 @@ ExecStart=/usr/bin/kubelet \
   --hostname-override={{ inventory_hostname }} \
   {% if calico_image is defined -%}
   --network-plugin=cni \
-  --network-plugin-dir=/etc/cni/net.d {% endif %}
+  --network-plugin-dir=/etc/cni/net.d {% endif %} \
+  --tls-cert-file={{ host_cert }}
+  --tls-private-key-file={{ host_key }} \
 
 
 Restart=always
