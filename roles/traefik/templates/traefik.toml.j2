@@ -1,11 +1,21 @@
-port = ":80"
+defaultEntryPoints = ["http", "https"]
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+  [entryPoints.https]
+  address = ":443"
+    [entryPoints.https.tls]
+      [[entryPoints.https.tls.certificates]]
+      CertFile = "{{ host_cert }}"
+      KeyFile = "{{ host_key }}"
+
 graceTimeOut = 10
 logLevel = "ERROR"
 
 [web]
 address = ":8081"
-CertFile = "/etc/pki/mantl/cert"
-KeyFile = "/etc/pki/mantl/key"
+CertFile = "{{ host_cert }}"
+KeyFile = "{{ host_key }}"
 
 [marathon]
 endpoint = "{{ traefik_marathon_endpoint }}"
