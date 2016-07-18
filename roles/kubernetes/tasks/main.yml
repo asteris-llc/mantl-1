@@ -14,6 +14,17 @@
   tags:
     - kubernetes
 
+- name: generate kube-proxy manifest
+  sudo: yes
+  template:
+    src: "kube-proxy.yml"
+    dest: "{{ kube_manifest_dir }}/kube-proxy.yml"
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - kubernetes
+
 - name: install kubernetes binaries
   sudo: yes
   yum:
