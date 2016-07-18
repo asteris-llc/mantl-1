@@ -36,9 +36,7 @@
 - name: generate kubelet systemd unit
   sudo: yes
   template:
-    src: >
-      {% if 'role=control' in group_names -%}kubelet-master.service.j2
-      {%- else -%}kubelet-node.service.j2{%- endif %}
+    src: kubelet.service.j2
     dest: /usr/lib/systemd/system/kubelet.service
     owner: root
     group: root
