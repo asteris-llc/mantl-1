@@ -12,7 +12,7 @@ spec:
     - /hyperkube
     - proxy
     - --master=https://kubernetes.service.consul:{{ kube_master_port }}
-    - --kubeconfig=/etc/kubernetes/node.kubeconfig
+    - --kubeconfig=/etc/kubernetes/kubeconfig.yml
     - --proxy-mode=iptables
     - --v={{kube_log_level}}
     securityContext:
